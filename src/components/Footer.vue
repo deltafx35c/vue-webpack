@@ -9,9 +9,9 @@
 	    		<transition name="slide-fade">
 					<ul v-show="isShow" class="sub-nav">
 						<!--<li><router-link :to="{name: 'introduction'}">景区介绍</router-link></li>-->
-						<li><a href="">景区服务</a></li>
+						<li><a href="/home">景区服务</a></li>
 						<!--<li><router-link :to="{name: 'service', params: {type: 3}}">景区公告</router-link></li>-->
-						<li><a href="">虚拟景区</a></li>
+						<li><a href="/home">虚拟景区</a></li>
 					</ul>
 				</transition>
 	    	</li>
