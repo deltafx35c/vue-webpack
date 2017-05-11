@@ -10,15 +10,15 @@ export default new Router({
   base:'app',
   routes: [
     {
-      path: '/',
+      path: '',
       name: 'home',
       component: Home
     }, {
-      path: '/home',
+      path: 'home',
       name: 'home', 
       component: Home
     }, {
-      path: '/cart',
+      path: 'cart',
       name: 'cart', 
       component: Cart
     }
