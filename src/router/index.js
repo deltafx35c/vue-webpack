@@ -7,18 +7,18 @@ Vue.use(Router)
 
 export default new Router({
   mode:'history',
-  base:'app/',
+  //base:'',
   routes: [
     {
-      path: '',
+      path: '/',
       name: 'home',
       component: Home
     }, {
-      path: 'home',
+      path: '/home',
       name: 'home', 
       component: Home
     }, {
-      path: 'cart',
+      path: '/cart',
       name: 'cart', 
       component: Cart
     }
