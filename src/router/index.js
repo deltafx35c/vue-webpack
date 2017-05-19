@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
 import Cart from '@/components/Cart'
+import Todo from '@/components/Todo'
 
 Vue.use(Router)
 
@@ -21,6 +22,10 @@ export default new Router({
       path: '/cart',
       name: 'cart', 
       component: Cart
+    }, {
+      path: '/todo',
+      name: 'todo', 
+      component: Todo
     }
   ]
 })

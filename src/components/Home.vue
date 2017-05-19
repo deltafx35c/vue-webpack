@@ -18,6 +18,7 @@
                 <div class="swiper-pagination"></div>
             </div>
         </div>    -->
+        <v-menu></v-menu>
         <v-footer></v-footer>
     </div>
 </template>
@@ -25,7 +26,8 @@
 <script>
 import vHeader from '../components/Header'
 // import userCount from '../components/userCount'
-import vFooter from '../components/Footer.vue'
+import vFooter from '../components/Footer'
+import vMenu from '../components/Menu'
 // import '../static/lib/js/swiper.min.js'
 // import '../static/lib/css/swiper.min.css'
 
@@ -36,7 +38,7 @@ export default {
         }
     },
     components: {
-        vHeader ,  vFooter
+        vHeader,vFooter,vMenu
     },
     mounted() {
     //初始化swiper
@@ -44,12 +46,23 @@ export default {
     //     pagination: '.swiper-pagination',
     //     loop: true
     // });
-  }
+    },
+    methods: {
+     
+    }
 
 }
 </script>
 
 <style scoped lang="scss">
+    #dragitem{
+        width:100px;
+        height:100px;
+        background-color:red;
+        position:absolute;
+        left:100px;
+        top:200px;
+    }
     #main {
         font-family: "Microsoft Yahei", 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;

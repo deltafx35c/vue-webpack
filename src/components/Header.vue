@@ -26,7 +26,6 @@
 		width: 100%;
 		height: 40px;
 		line-height: 40px;
-		
 		color: #595757;
 		background: #fff ;
 		text-align: center;

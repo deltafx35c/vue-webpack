@@ -9,14 +9,14 @@
 	    		<transition name="slide-fade">
 					<ul v-show="isShow" class="sub-nav">
 						<!--<li><router-link :to="{name: 'introduction'}">景区介绍</router-link></li>-->
-						<li><router-link to="/home">景区服务</router-link></li>
+						<li><router-link to="/todo">景区服务</router-link></li>
 						<!--<li><router-link :to="{name: 'service', params: {type: 3}}">景区公告</router-link></li>-->
-						<li><router-link to="/home">虚拟景区</router-link></li>
+						<li><router-link to="/todo">虚拟景区</router-link></li>
 					</ul>
 				</transition>
 	    	</li>
 	    	<li>
-		    	<router-link to="/home" :class=" pathName == navUrl[1] ? 'active' : ''">
+		    	<router-link to="/todo" :class=" pathName == navUrl[1] ? 'active' : ''">
 		    		<i class="iconfont">&#xe6b2;</i><span>预订</span>
 		    	</router-link>
 	    	</li>
@@ -26,7 +26,7 @@
 	    		</router-link>
 	    	</li>
 	    	<li>
-				<router-link to="/travelBox" :class=" pathName == navUrl[3] ? 'active' : ''">
+				<router-link to="/todo" :class=" pathName == navUrl[3] ? 'active' : ''">
 					<i class="iconfont">&#xe67c;</i><span>百宝箱</span>
 				</router-link>
 	    	</li>
