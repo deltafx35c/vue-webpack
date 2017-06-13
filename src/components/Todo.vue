@@ -1,15 +1,13 @@
 <template>
 	<div>
 		<v-header showBackBtn="true" headTitle="hello world"></v-header>
-		<p class="todoMsg">该组件还为完成</p>
-		<v-menu></v-menu>
+		<div class="todoMsg">该组件还为完成</div>
         <v-footer></v-footer>
 	</div>
 </template>
 <script>
 	import vHeader from '../components/Header'
 	import vFooter from '../components/Footer'
-	import vMenu from '../components/Menu'
 	export default {
 		data() {
 			return {
@@ -17,10 +15,10 @@
 			}
 		},
 		components: {
-			vHeader,vFooter,vMenu
+			vHeader,vFooter
 		},
 	}
 </script>
 <style scoped lang="scss">
-	
+	.todoMsg{position:fixed;top:40px;left:0;right:0;bottom:50px;}
 </style>

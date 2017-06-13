@@ -31,7 +31,7 @@ export default {
         }
     },
     components: {
-        vHeader ,  vFooter
+        vHeader,vFooter
     },
     mounted() {
         let url = '/api/users';

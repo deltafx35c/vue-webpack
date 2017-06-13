@@ -8,9 +8,18 @@ const users = [
 ]
 
 const MongoClient = require('mongodb').MongoClient
+const redis = require('redis')
+const client = redis.createClient(6379,'127.0.0.1',{})
+
+client.on('error', (err) => console.log('Error' + err))
 
 /* GET users listing. */
-router.get('/users', function (req, res, next) {
+router.get('/users', (req, res, next) => {
+  client.set('key1', 'redis value 1', redis.print)
+  client.get('key1',(error,res) => {
+    console.log(res)
+  })
+
   let selectData = (db,callback) => {
     let collection = db.collection('users')
     collection.find().toArray((err,result) => {
@@ -32,7 +41,7 @@ router.get('/users', function (req, res, next) {
 })
 
 /* GET user by ID. */
-router.get('/users/:id', function (req, res, next) {
+router.get('/users/:id', (req, res, next) => {
   var id = parseInt(req.params.id)
   if (id >= 0 && id < users.length) {
     res.json(users[id])

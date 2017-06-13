@@ -1,13 +1,18 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    <v-menu></v-menu>
   </div>
 </template>
 
 <script>
 import './static/lib/css/main.css'
+import vMenu from './components/Menu'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+      vMenu
+  },
 }
 </script>
 
