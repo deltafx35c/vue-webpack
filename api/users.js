@@ -1,5 +1,9 @@
 const router = require('express').Router()
 const ENV = require('../env')
+const mongoose = require('mongoose')
+const Gridfs = require('gridfs-stream')
+const fs = require("fs");
+Gridfs.mongo = mongoose.mongo
 
 const users = [
   { name: 'Alexandre' },
@@ -8,36 +12,47 @@ const users = [
 ]
 
 const MongoClient = require('mongodb').MongoClient
-const redis = require('redis')
-const client = redis.createClient(6379,'127.0.0.1',{})
 
-client.on('error', (err) => console.log('Error' + err))
+
+
+// const redis = require('redis')
+// const client = redis.createClient(ENV.REDIS_CONN_PORT,ENV.REDIS_CONN_URL,{})
+// client.on('error', (err) => console.log('Error' + err))
 
 /* GET users listing. */
 router.get('/users', (req, res, next) => {
-  client.set('key1', 'redis value 1', redis.print)
-  client.get('key1',(error,res) => {
-    console.log(res)
+  const conn = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'vue-webpack')
+  let UsersSchema = new mongoose.Schema({
+    name:String
   })
+  let UsersModel = conn.model('Users',UsersSchema)
+  let UsersEntity = UsersModel.find({},function(){
 
-  let selectData = (db,callback) => {
-    let collection = db.collection('users')
-    collection.find().toArray((err,result) => {
-      if(err){
-        console.log('Error:' + err)
-        return
-      }
-      callback(result)
-    })
-  }
-
-  MongoClient.connect(ENV.MANGODB_CONN_STR,(err,db)=>{
-    console.log('mongodb is connected')
-    selectData(db,(result)=>{
-      res.json(result)
-      db.close()
-    })
   })
+  console.log(UsersEntity)
+  // client.set('key1', 'redis value 1', redis.print)
+  // client.get('key1',(error,res) => {
+  //   console.log(res)
+  // })
+
+  // let selectData = (db,callback) => {
+  //   let collection = db.collection('users')
+  //   collection.find().toArray((err,result) => {
+  //     if(err){
+  //       console.log('Error:' + err)
+  //       return
+  //     }
+  //     callback(result)
+  //   })
+  // }
+
+  // MongoClient.connect(ENV.MANGODB_CONN_STR,(err,db)=>{
+  //   console.log('mongodb is connected')
+  //   selectData(db,(result)=>{
+  //     res.json(result)
+  //     db.close()
+  //   })
+  // })
 })
 
 /* GET user by ID. */
@@ -48,6 +63,19 @@ router.get('/users/:id', (req, res, next) => {
   } else {
     res.sendStatus(404)
   }
+})
+
+/* POST user pictures to mongo-gridfs*/
+router.post('/pics', (req, res, next) => {
+  const conn = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'pics')
+  conn.on('error',() => {console.log('mongoose connect error')})
+  conn.once('open',() => {console.log('mongoose is connected')})
+  let gfs = Gridfs(conn.db)
+  let writeStream = gfs.createWriteStream({
+    filename:'nodeTestFile.jpg',
+    content_type:'jpg'
+  })
+  fs.createReadStream('./nodeTestFile.jpg').pipe(writeStream);
 })
 
 module.exports = router

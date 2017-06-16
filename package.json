@@ -14,8 +14,10 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "gridfs-stream": "^1.1.1",
     "mint-ui": "^2.2.7",
     "mongodb": "^2.2.26",
+    "mongoose": "^4.10.6",
     "pm2": "^2.4.6",
     "redis": "^2.7.1",
     "vue": "^2.3.3",
