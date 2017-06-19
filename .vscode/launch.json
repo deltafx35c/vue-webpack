@@ -10,6 +10,23 @@
             "name": "Attach to Process",
             "processId": "${command:PickProcess}",
             "port": 5858
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "nodemon",
+            "runtimeExecutable": "nodemon",
+            "runtimeArgs": [
+                "--debug=5858"
+            ],
+            "env": {
+                "NODE_ENV":"development"
+            },
+            "program": "${workspaceRoot}/apiServer.js",
+            "restart": true,
+            "port": 5858,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
         }
     ]
 }

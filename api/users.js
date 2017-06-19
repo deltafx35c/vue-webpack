@@ -23,13 +23,17 @@ const MongoClient = require('mongodb').MongoClient
 router.get('/users', (req, res, next) => {
   const conn = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'vue-webpack')
   let UsersSchema = new mongoose.Schema({
-    name:String
+    name:{type:String,default:''}
   })
   let UsersModel = conn.model('Users',UsersSchema)
-  let UsersEntity = UsersModel.find({},function(){
-
+  let UsersEntity = new UsersModel()
+  UsersModel.find({},(err,docs) => {
+    console.log(docs)
   })
-  console.log(UsersEntity)
+
+  res.json(users)
+
+  
   // client.set('key1', 'redis value 1', redis.print)
   // client.get('key1',(error,res) => {
   //   console.log(res)
