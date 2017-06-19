@@ -7,9 +7,9 @@
         {
             "type": "node",
             "request": "attach",
-            "name": "Attach to Process",
-            "processId": "${command:PickProcess}",
-            "port": 5858
+            "name": "Attach",
+            "port": 9229,
+            "restart":true
         },
         {
             "type": "node",
@@ -17,14 +17,14 @@
             "name": "nodemon",
             "runtimeExecutable": "nodemon",
             "runtimeArgs": [
-                "--debug=5858"
+                "--inspect"
             ],
-            "env": {
+            "env":{
                 "NODE_ENV":"development"
             },
             "program": "${workspaceRoot}/apiServer.js",
             "restart": true,
-            "port": 5858,
+            "port": 9229,
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen"
         }

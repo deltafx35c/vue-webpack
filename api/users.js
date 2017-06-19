@@ -13,8 +13,6 @@ const users = [
 
 const MongoClient = require('mongodb').MongoClient
 
-
-
 // const redis = require('redis')
 // const client = redis.createClient(ENV.REDIS_CONN_PORT,ENV.REDIS_CONN_URL,{})
 // client.on('error', (err) => console.log('Error' + err))
@@ -26,13 +24,9 @@ router.get('/users', (req, res, next) => {
     name:{type:String,default:''}
   })
   let UsersModel = conn.model('Users',UsersSchema)
-  let UsersEntity = new UsersModel()
   UsersModel.find({},(err,docs) => {
-    console.log(docs)
+    res.json(docs)
   })
-
-  res.json(users)
-
   
   // client.set('key1', 'redis value 1', redis.print)
   // client.get('key1',(error,res) => {
