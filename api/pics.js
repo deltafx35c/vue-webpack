@@ -4,7 +4,7 @@ const fs = require("fs");
 const multiparty = require('connect-multiparty')
 const mongoose = require('mongoose')
 const PhotosSchema = require('./schema/photosSchema')
-const PicsSchema = require('./schema/PicsSchema')
+const PicsSchema = require('./schema/picsSchema')
 const Gridfs = require('gridfs-stream')
 
 mongoose.Promise = global.Promise;
