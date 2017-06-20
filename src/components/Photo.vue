@@ -10,9 +10,11 @@
             <mt-button type="primary" v-on:click="onTap">添加图片</mt-button>
             <mt-popup v-model="popupVisible" position="left">
                 <div class="popup-box">
-                    <label for="file-input">选择文件</label>
-                    <input id="file-input" type="file" ref="inputer" @change="onFileChange" multiple="multiple">
-                    <mt-button type="primary" v-on:click="uploadPhotos">上 传</mt-button>
+                    <div class="upload-control">
+                        <label for="file-input">选择文件</label>
+                        <input id="file-input" type="file" ref="inputer" @change="onFileChange" multiple="multiple">
+                        <mt-button type="primary" v-on:click="uploadPhotos">上 传</mt-button>
+                    </div>
                 </div>
             </mt-popup>
         </div>
@@ -81,7 +83,10 @@
                 }
             }
             .popup-box {width:200px;height:100vh;top:0;right:0;bottom:0;background:#fff;text-align: center;
-                #file-input{display:none;}
+                .upload-control{
+                    padding-top:100px;
+                    #file-input{display:none;}
+                }
             }
         }
     }
