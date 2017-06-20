@@ -63,8 +63,9 @@
             onFileChange(){
                 let inputDOM = this.$refs.inputer
                 let formdata = new FormData()
-                for (let file of inputDOM.files){
-                    formdata.append('uploadFile',file)
+                debugger;
+                for (let i=0;i<inputDOM.files.length;i++){
+                    formdata.append('uploadFile',inputDOM.files[i])
                 }
                 this.formdata = formdata
             }
