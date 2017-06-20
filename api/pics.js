@@ -7,7 +7,7 @@ const PhotosSchema = require('./schema/photosSchema')
 const PicsSchema = require('./schema/picsSchema')
 const Gridfs = require('gridfs-stream')
 
-mongoose.Promise = global.Promise;
+//mongoose.Promise = global.Promise;
 Gridfs.mongo = mongoose.mongo
 
 const users = [
@@ -16,9 +16,10 @@ const users = [
   { name: 'Ludovic' }
 ]
 
-//const MongoClient = require('mongodb').MongoClient
-let dbPics = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'pics')
-let dbVueWebpack = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'vue-webpack')
+let connPics = mongoose.connect(ENV.MANGODB_CONN_STR+'pics')
+let dbPics = connPics.connection
+let connVueWebpack = mongoose.connect(ENV.MANGODB_CONN_STR+'vue-webpack')
+let dbVueWebpack = connVueWebpack.connection
 let PhotosModel = dbVueWebpack.model('Photos',PhotosSchema)
 let PicsModel = dbPics.model('fs.files',PicsSchema)
 
