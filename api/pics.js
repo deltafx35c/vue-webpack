@@ -17,8 +17,8 @@ const users = [
 ]
 
 //const conn = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'vue-webpack')
-let dbPics = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'pics')
-let dbVueWebpack = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'vue-webpack')
+let dbPics = mongoose.createConnection(ENV.MANGOOSE_CONN_STR+'pics')
+let dbVueWebpack = mongoose.createConnection(ENV.MANGOOSE_CONN_STR+'vue-webpack')
 let PhotosModel = dbVueWebpack.model('Photos',PhotosSchema)
 let PicsModel = dbPics.model('fs.files',PicsSchema)
 

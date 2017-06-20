@@ -55,7 +55,6 @@
             uploadPhotos(){
                 let url = '/api/pics';
                 this.$http.post(url,this.formdata).then((response) => {
-                    
                 }, (response) => {
                     console.log('oops, data is error');
                 })
@@ -63,7 +62,6 @@
             onFileChange(){
                 let inputDOM = this.$refs.inputer
                 let formdata = new FormData()
-                debugger;
                 for (let i=0;i<inputDOM.files.length;i++){
                     formdata.append('uploadFile',inputDOM.files[i])
                 }
