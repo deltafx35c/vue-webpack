@@ -2,18 +2,19 @@
 	<footer>
 	    <ul class="tab-list">
 	    	<li>
-	    		<a v-on:click="showNav()" :class=" pathName == navUrl[0] ? 'active' : ''">
+				<router-link to="/photo" :class=" pathName == navUrl[0] ? 'active' : ''">
+		    		<i class="iconfont">&#xe6a8;</i><span>照片</span>
+		    	</router-link>
+	    		<!--<a v-on:click="showNav()" :class=" pathName == navUrl[0] ? 'active' : ''">
 	    			<i class="iconfont">&#xe6a8;</i>
 	    			<span>景区</span>
 	    		</a>
 	    		<transition name="slide-fade">
 					<ul v-show="isShow" class="sub-nav">
-						<!--<li><router-link :to="{name: 'introduction'}">景区介绍</router-link></li>-->
 						<li><router-link to="/todo">景区服务</router-link></li>
-						<!--<li><router-link :to="{name: 'service', params: {type: 3}}">景区公告</router-link></li>-->
 						<li><router-link to="/todo">虚拟景区</router-link></li>
 					</ul>
-				</transition>
+				</transition>-->
 	    	</li>
 	    	<li>
 		    	<router-link to="/todo" :class=" pathName == navUrl[1] ? 'active' : ''">
@@ -45,7 +46,7 @@
                 showEvent: undefined,
 				isShow: false,
 				pathName : 'home',
-				navUrl : ['scenic', 'order', 'home', 'travelBox', 'cart']
+				navUrl : ['photo', 'order', 'home', 'travelBox', 'cart']
 			}
 		},
 		created() {

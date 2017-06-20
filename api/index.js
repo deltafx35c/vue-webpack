@@ -1,6 +1,7 @@
 const router = require('express').Router()
 
-// Add USERS Routes
 router.use(require('./users'))
+router.use(require('./pics'))
+
 
 module.exports = router

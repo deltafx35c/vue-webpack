@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Cart from '@/components/Cart'
 import Todo from '@/components/Todo'
+import Photo from '@/components/Photo'
 
 Vue.use(Router)
 
@@ -26,6 +27,10 @@ export default new Router({
       path: '/todo',
       name: 'todo', 
       component: Todo
+    }, {
+      path: '/photo',
+      name: 'photo',
+      component: Photo
     }
   ]
 })

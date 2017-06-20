@@ -32,25 +32,6 @@ router.get('/users', (req, res, next) => {
   // client.get('key1',(error,res) => {
   //   console.log(res)
   // })
-
-  // let selectData = (db,callback) => {
-  //   let collection = db.collection('users')
-  //   collection.find().toArray((err,result) => {
-  //     if(err){
-  //       console.log('Error:' + err)
-  //       return
-  //     }
-  //     callback(result)
-  //   })
-  // }
-
-  // MongoClient.connect(ENV.MANGODB_CONN_STR,(err,db)=>{
-  //   console.log('mongodb is connected')
-  //   selectData(db,(result)=>{
-  //     res.json(result)
-  //     db.close()
-  //   })
-  // })
 })
 
 /* GET user by ID. */
@@ -64,16 +45,16 @@ router.get('/users/:id', (req, res, next) => {
 })
 
 /* POST user pictures to mongo-gridfs*/
-router.post('/pics', (req, res, next) => {
-  const conn = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'pics')
-  conn.on('error',() => {console.log('mongoose connect error')})
-  conn.once('open',() => {console.log('mongoose is connected')})
-  let gfs = Gridfs(conn.db)
-  let writeStream = gfs.createWriteStream({
-    filename:'nodeTestFile.jpg',
-    content_type:'jpg'
-  })
-  fs.createReadStream('./nodeTestFile.jpg').pipe(writeStream);
-})
+// router.post('/pics', (req, res, next) => {
+//   const conn = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'pics')
+//   conn.on('error',() => {console.log('mongoose connect error')})
+//   conn.once('open',() => {console.log('mongoose is connected')})
+//   let gfs = Gridfs(conn.db)
+//   let writeStream = gfs.createWriteStream({
+//     filename:'nodeTestFile.jpg',
+//     content_type:'jpg'
+//   })
+//   fs.createReadStream('./nodeTestFile.jpg').pipe(writeStream);
+// })
 
 module.exports = router
