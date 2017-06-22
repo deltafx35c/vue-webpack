@@ -20,5 +20,5 @@
 	}
 </script>
 <style scoped lang="scss">
-	.todoMsg{position:fixed;top:40px;left:0;right:0;bottom:50px;}
+	.todoMsg{position:fixed;top:40px;left:0;right:0;bottom:50px;text-align: center;line-height:100px;}
 </style>

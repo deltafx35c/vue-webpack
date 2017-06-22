@@ -4,7 +4,7 @@
         <div class="content">
             <div class="photoList">
                 <div class="item" v-for="photo in photos">
-                    <img width="100%" :src="picsUrl + photo.filename" />
+                    <img v-lazy.container="picsUrl + photo.filename" />
                 </div>
             </div>
             <mt-button type="primary" v-on:click="onTap">添加图片</mt-button>
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+
     import vHeader from '../components/Header'
     import vFooter from '../components/Footer'
     export default {
@@ -72,21 +73,29 @@
 </script>
 <style scoped lang="scss">
     #photo{
+
         width:100%;height:100%;overflow:hidden;
         .content {
             position:absolute;left:0;right:0;top:40px;bottom:50px;overflow:auto;
             .photoList {
-                display:flex;flex-flow:column wrap;height:100%;
+                width:100%;padding:30px;box-sizing:border-box;
                 &>.item {
-                    width:50vw;
+                    width:100%;margin-bottom:30px;
+                    img {
+                        width:100%;
+                    }
                 }
             }
-            .popup-box {width:200px;height:100vh;top:0;right:0;bottom:0;background:#fff;text-align: center;
-                .upload-control{
-                    padding-top:100px;
-                    #file-input{display:none;}
-                }
+            .mint-popup-left{
+                height:100%;
+                .popup-box {width:200px;height:100%;top:0;right:0;bottom:0;background:#fff;text-align: center;
+                    .upload-control{
+                        padding-top:100px;
+                        #file-input{display:none;}
+                    }
+                }         
             }
+            
         }
     }
 

@@ -9,7 +9,7 @@
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "api-dev": "cross-env NODE_ENV=development nodemon ./apiServer.js",
-    "api-start": "cross-env NODE_ENV=production pm2 start ./apiServer.js -i max",
+    "api": "cross-env NODE_ENV=production pm2 start ./apiServer.js -i max",
     "api-list": "pm2 list"
   },
   "dependencies": {

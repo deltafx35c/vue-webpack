@@ -18,7 +18,7 @@
 	    	</li>
 	    	<li>
 		    	<router-link to="/todo" :class=" pathName == navUrl[1] ? 'active' : ''">
-		    		<i class="iconfont">&#xe6b2;</i><span>预订</span>
+		    		<i class="iconfont">&#xe6b2;</i><span>提醒</span>
 		    	</router-link>
 	    	</li>
 	    	<li>
@@ -28,7 +28,7 @@
 	    	</li>
 	    	<li>
 				<router-link to="/todo" :class=" pathName == navUrl[3] ? 'active' : ''">
-					<i class="iconfont">&#xe67c;</i><span>百宝箱</span>
+					<i class="iconfont">&#xe67c;</i><span>微博</span>
 				</router-link>
 	    	</li>
 	    	<li>
@@ -46,7 +46,7 @@
                 showEvent: undefined,
 				isShow: false,
 				pathName : 'home',
-				navUrl : ['photo', 'order', 'home', 'travelBox', 'cart']
+				navUrl : ['photo', 'todo', 'home', 'todo', 'cart']
 			}
 		},
 		created() {

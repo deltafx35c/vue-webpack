@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
-import Cart from '@/components/Cart'
-import Todo from '@/components/Todo'
-import Photo from '@/components/Photo'
+import Home from '@/pages/Home'
+import Cart from '@/pages/Cart'
+import Todo from '@/pages/Todo'
+import Photo from '@/pages/Photo'
 
 Vue.use(Router)
 

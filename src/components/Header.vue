@@ -1,6 +1,5 @@
 <template>
 	<header>
-		<slot name="logo"></slot>
 		<span class="head-goback" v-if="showBackBtn" @click="$router.go(-1)">
 			<i title="返回" class="iconfont">&#xe679;</i>
         </span>
