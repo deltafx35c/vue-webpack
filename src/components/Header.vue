@@ -1,7 +1,7 @@
 <template>
 	<header>
 		<span class="head-goback" v-if="showBackBtn" @click="$router.go(-1)">
-			<i title="返回" class="iconfont">&#xe679;</i>
+			<i title="返回" class="iconfont">&#xe720;</i>
         </span>
         <span class="title-text" v-if="headTitle">{{headTitle}}</span>
 	</header>

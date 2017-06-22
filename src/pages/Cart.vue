@@ -14,7 +14,7 @@
             </div>
         </mt-popup>
         <mt-cell title="去首页" value="hello" is-link to="/home">
-            <i slot="icon" class="iconfont">&#xe6b8;</i>
+            <i slot="icon" class="iconfont">&#xe720;</i>
         </mt-cell>
         <v-footer></v-footer>
     </div>

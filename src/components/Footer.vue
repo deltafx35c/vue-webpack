@@ -3,7 +3,7 @@
 	    <ul class="tab-list">
 	    	<li>
 				<router-link to="/photo" :class=" pathName == navUrl[0] ? 'active' : ''">
-		    		<i class="iconfont">&#xe6a8;</i><span>照片</span>
+		    		<i class="iconfont">&#xe67f;</i><span>照片</span>
 		    	</router-link>
 	    		<!--<a v-on:click="showNav()" :class=" pathName == navUrl[0] ? 'active' : ''">
 	    			<i class="iconfont">&#xe6a8;</i>
@@ -18,22 +18,22 @@
 	    	</li>
 	    	<li>
 		    	<router-link to="/todo" :class=" pathName == navUrl[1] ? 'active' : ''">
-		    		<i class="iconfont">&#xe6b2;</i><span>提醒</span>
+		    		<i class="iconfont">&#xe69e;</i><span>资源</span>
 		    	</router-link>
 	    	</li>
 	    	<li>
 	    		<router-link to="/home" :class=" pathName == navUrl[2] ? 'active' : ''">
-	    			<i class="iconfont">&#xe6b8;</i><span>主页</span>
+	    			<i class="iconfont">&#xe6ca;</i>
 	    		</router-link>
 	    	</li>
 	    	<li>
 				<router-link to="/todo" :class=" pathName == navUrl[3] ? 'active' : ''">
-					<i class="iconfont">&#xe67c;</i><span>微博</span>
+					<i class="iconfont">&#xe675;</i><span>微博</span>
 				</router-link>
 	    	</li>
 	    	<li>
 	    		<router-link to="/cart" :class=" pathName == navUrl[4] ? 'active' : ''">
-	    			<i class="iconfont">&#xe698;</i><span>购物</span>
+	    			<i class="iconfont">&#xe668;</i><span>下载</span>
 	    		</router-link>
 	    	</li>
 	    </ul>
@@ -76,29 +76,39 @@
             bottom: 0;
             z-index: 100;
 			background:#fff;
+			box-shadow: 2px 0 5px 2px rgba(0, 0, 0, 0.3);
             & > li {
                 display: block;
                 position: relative;
                 float: left;
                 width: 20%;
+				height:100%;
+				padding:5px;
                 box-sizing: border-box;
                 .iconfont {
                     display: block;
-                    font-size: 26px;
+                    font-size: 22px;
                 }
-                & > a {
+				& > a {
+					display: block;
+                    width: 100%;
+                    height: 100%;
+                    font-size: 12px;
+                    color: #5D656B;
+                    text-align: center;
                     &.active {
                         & > i, & > span {
                             color: #E50012;
                         }
                     }
-                    display: block;
-                    width: 100%;
-                    height: 100%;
-                    font-size: 14px;
-                    color: #5D656B;
-                    text-align: center;
                 }
+				&:nth-child(3) {
+					.iconfont {
+						font-size:40px;
+						line-height:40px;
+					}
+				}
+                
             }
 		}
 		.sub-nav {
