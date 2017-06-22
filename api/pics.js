@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const PhotosSchema = require('./schema/photosSchema')
 const PicsSchema = require('./schema/picsSchema')
 const Gridfs = require('gridfs-stream')
+const gm = require('gm').subClass({imageMagick:true})
 
 mongoose.Promise = global.Promise;
 Gridfs.mongo = mongoose.mongo
@@ -55,7 +56,8 @@ router.post('/pics', multipartyMiddleware, (req, res, next) => {
             type:"photo"
           }
         })
-        fs.createReadStream(file.path).pipe(writeStream);
+        gm(file.path).resize(600).stream().pipe(writeStream)
+        //fs.createReadStream(file.path).pipe(writeStream);
         writeStream.on('close',(file) => {
           let photo = {}
           photo.id = file._id.toString()
@@ -76,7 +78,8 @@ router.post('/pics', multipartyMiddleware, (req, res, next) => {
           type:"photo"
         }
       })
-      fs.createReadStream(file.path).pipe(writeStream);
+      gm(file.path).resize(600).stream().pipe(writeStream)
+      //fs.createReadStream(file.path).pipe(writeStream);
       writeStream.on('close',(file) => {
         let photo = {}
         photo.id = file._id.toString()
