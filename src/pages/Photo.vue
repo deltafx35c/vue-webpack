@@ -74,7 +74,7 @@
 <style scoped lang="scss">
     #photo{
         .content {
-            margin-top:40px;margin-bottom:50px;padding:30px;box-sizing:border-box;
+            padding:70px 30px 80px;box-sizing:border-box;
             .photoList {
                 width:100%;
                 &>.item {
