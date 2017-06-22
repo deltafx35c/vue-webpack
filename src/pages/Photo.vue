@@ -73,12 +73,10 @@
 </script>
 <style scoped lang="scss">
     #photo{
-
-        width:100%;height:100%;overflow:hidden;
         .content {
-            position:absolute;left:0;right:0;top:40px;bottom:50px;overflow:auto;
+            margin-top:40px;margin-bottom:50px;padding:30px;box-sizing:border-box;
             .photoList {
-                width:100%;padding:30px;box-sizing:border-box;
+                width:100%;
                 &>.item {
                     width:100%;margin-bottom:30px;
                     img {
