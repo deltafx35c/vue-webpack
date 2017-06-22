@@ -47,7 +47,9 @@ router.post('/pics', multipartyMiddleware, (req, res, next) => {
   if (req.files.uploadFile){
 
     let gfs = Gridfs(dbPics.db)
+    
     if (Object.prototype.toString.call(req.files.uploadFile) === '[object Array]'){
+      // 多图上传
       for(let file of req.files.uploadFile){
         let path = file.path
         let writeStream = gfs.createWriteStream({
@@ -59,6 +61,7 @@ router.post('/pics', multipartyMiddleware, (req, res, next) => {
         })
         gm(path).resize(500).stream().pipe(writeStream)
         writeStream.on('close',(file) => {
+          // 记录图片业务关联信息
           let photo = {}
           photo.id = file._id.toString()
           photo.name = file.filename
@@ -72,6 +75,7 @@ router.post('/pics', multipartyMiddleware, (req, res, next) => {
         })
       }
     } else {
+      // 单图上传
       let file = req.files.uploadFile
       let path = file.path
       let writeStream = gfs.createWriteStream({
@@ -83,6 +87,7 @@ router.post('/pics', multipartyMiddleware, (req, res, next) => {
       })
       gm(path).resize(500).stream().pipe(writeStream)
       writeStream.on('close',(file) => {
+        // 记录图片业务关联信息
         let photo = {}
         photo.id = file._id.toString()
         photo.name = file.filename
