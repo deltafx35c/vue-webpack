@@ -49,6 +49,7 @@ router.post('/pics', multipartyMiddleware, (req, res, next) => {
     let gfs = Gridfs(dbPics.db)
     if (Object.prototype.toString.call(req.files.uploadFile) === '[object Array]'){
       for(let file of req.files.uploadFile){
+        let path = file.path
         let writeStream = gfs.createWriteStream({
           filename: file.name,
           content_type: file.type,
@@ -56,8 +57,7 @@ router.post('/pics', multipartyMiddleware, (req, res, next) => {
             type:"photo"
           }
         })
-        gm(file.path).resize(600).stream().pipe(writeStream)
-        //fs.createReadStream(file.path).pipe(writeStream);
+        gm(path).resize(500).stream().pipe(writeStream)
         writeStream.on('close',(file) => {
           let photo = {}
           photo.id = file._id.toString()
@@ -67,10 +67,13 @@ router.post('/pics', multipartyMiddleware, (req, res, next) => {
           photosEntity.save((err,photos) => {
 
           })
+          //删除临时文件
+          fs.unlink(path,(err) => {})
         })
       }
     } else {
       let file = req.files.uploadFile
+      let path = file.path
       let writeStream = gfs.createWriteStream({
         filename: file.name,
         content_type: file.type,
@@ -78,8 +81,7 @@ router.post('/pics', multipartyMiddleware, (req, res, next) => {
           type:"photo"
         }
       })
-      gm(file.path).resize(600).stream().pipe(writeStream)
-      //fs.createReadStream(file.path).pipe(writeStream);
+      gm(path).resize(500).stream().pipe(writeStream)
       writeStream.on('close',(file) => {
         let photo = {}
         photo.id = file._id.toString()
@@ -89,6 +91,8 @@ router.post('/pics', multipartyMiddleware, (req, res, next) => {
         photosEntity.save((err,photos) => {
 
         })
+        //删除临时文件
+        fs.unlink(path,(err) => {})
       })
     }
   }
