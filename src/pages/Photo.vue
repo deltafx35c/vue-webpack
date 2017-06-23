@@ -4,7 +4,7 @@
         <div class="content">
             <div class="photoList">
                 <div class="item" v-for="photo in photos">
-                    <img v-lazy.container="picsUrl + photo.filename" />
+                    <img v-lazy.container="picsUrl + photo.name" />
                 </div>
             </div>
             <mt-button type="primary" v-on:click="onTap">添加图片</mt-button>
@@ -23,7 +23,6 @@
 </template>
 
 <script>
-
     import vHeader from '../components/Header'
     import vFooter from '../components/Footer'
     export default {
@@ -31,7 +30,7 @@
             return {
                 formdata : undefined,
                 popupVisible:false,
-                picsUrl : 'http://116.62.143.122/pics/',
+                picsUrl : './static/images/',
                 photos : []
             }
         },

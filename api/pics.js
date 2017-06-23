@@ -25,7 +25,7 @@ let PicsModel = dbPics.model('fs.files',PicsSchema)
 
 /* GET pictures list by type. */
 router.get('/pics', (req, res, next) => {
-  PicsModel.find({"metadata.type":"photo"},(err,docs) => {
+  PhotosModel.find({"originType":"photo"},(err,docs) => {
     res.json(docs)
   })
 })
@@ -52,24 +52,23 @@ router.post('/pics', multipartyMiddleware, (req, res, next) => {
       // 多图上传
       for(let file of req.files.uploadFile){
         let path = file.path
-        let writeStream = gfs.createWriteStream({
-          filename: file.name,
-          content_type: file.type,
-          metadata: {
-            type:"photo"
-          }
-        })
+        // let writeStream = gfs.createWriteStream({
+        //   filename: file.name,
+        //   content_type: file.type,
+        //   metadata: {
+        //     type:"photo"
+        //   }
+        // })
+        let writeStream = fs.createWriteStream('./static/images/' + file.name)
         gm(path).resize(500).stream().pipe(writeStream)
-        writeStream.on('close',(file) => {
+        writeStream.on('close',() => {
           // 记录图片业务关联信息
           let photo = {}
-          photo.id = file._id.toString()
-          photo.name = file.filename
-          photo.contentType = file.contentType
+          photo.name = file.name
+          photo.contentType = file.type
+          photo.originType = "photo"
           let photosEntity = new PhotosModel(photo)
-          photosEntity.save((err,photos) => {
-
-          })
+          photosEntity.save((err,photo) => {})
           //删除临时文件
           fs.unlink(path,(err) => {})
         })
@@ -78,24 +77,23 @@ router.post('/pics', multipartyMiddleware, (req, res, next) => {
       // 单图上传
       let file = req.files.uploadFile
       let path = file.path
-      let writeStream = gfs.createWriteStream({
-        filename: file.name,
-        content_type: file.type,
-        metadata: {
-          type:"photo"
-        }
-      })
+      // let writeStream = gfs.createWriteStream({
+      //   filename: file.name,
+      //   content_type: file.type,
+      //   metadata: {
+      //     type:"photo"
+      //   }
+      // })
+      let writeStream = fs.createWriteStream('./static/images/' + file.name)
       gm(path).resize(500).stream().pipe(writeStream)
-      writeStream.on('close',(file) => {
+      writeStream.on('close',() => {
         // 记录图片业务关联信息
         let photo = {}
-        photo.id = file._id.toString()
-        photo.name = file.filename
-        photo.contentType = file.contentType
+        photo.name = file.name
+        photo.contentType = file.type
+        photo.originType = "photo"
         let photosEntity = new PhotosModel(photo)
-        photosEntity.save((err,photos) => {
-
-        })
+        photosEntity.save((err,photo) => {})
         //删除临时文件
         fs.unlink(path,(err) => {})
       })

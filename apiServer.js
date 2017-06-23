@@ -1,7 +1,6 @@
 const app = require('express')()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3090
-const router = require('express').Router()
 
 app.set('port', port)
 
