@@ -42,7 +42,7 @@
         },
         methods: {
             init(){
-                let url = '/api/pics';
+                let url = '/api/photos';
                 this.$http.get(url).then((response) => {
                     this.$data.photos = response.data
                 }, (response) => {
@@ -53,7 +53,7 @@
                 this.popupVisible = true;
             },
             uploadPhotos(){
-                let url = '/api/pics';
+                let url = '/api/photos';
                 this.$http.post(url,this.formdata).then((response) => {
                 }, (response) => {
                     console.log('oops, data is error');

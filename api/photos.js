@@ -4,7 +4,7 @@ const fs = require("fs");
 const multiparty = require('connect-multiparty')
 const mongoose = require('mongoose')
 const PhotosSchema = require('./schema/photosSchema')
-const PicsSchema = require('./schema/picsSchema')
+const FilesSchema = require('./schema/filesSchema')
 const Gridfs = require('gridfs-stream')
 const gm = require('gm').subClass({imageMagick:true})
 
@@ -18,20 +18,20 @@ const users = [
 ]
 
 //const conn = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'vue-webpack')
-let dbPics = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'pics')
+let dbFiles = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'files')
 let dbVueWebpack = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'vue-webpack')
 let PhotosModel = dbVueWebpack.model('Photos',PhotosSchema)
-let PicsModel = dbPics.model('fs.files',PicsSchema)
+let FilesModel = dbFiles.model('fs.files',FilesSchema)
 
 /* GET pictures list by type. */
-router.get('/pics', (req, res, next) => {
+router.get('/photos', (req, res, next) => {
   PhotosModel.find({"originType":"photo"},(err,docs) => {
     res.json(docs)
   })
 })
 
 /* GET user by ID. */
-router.get('/pics/:id', (req, res, next) => {
+router.get('/photo/:id', (req, res, next) => {
   var id = parseInt(req.params.id)
   if (id >= 0 && id < users.length) {
     res.json(users[id])
@@ -43,10 +43,10 @@ router.get('/pics/:id', (req, res, next) => {
 
 let multipartyMiddleware = multiparty()
 /* POST user pictures to mongo-gridfs*/
-router.post('/pics', multipartyMiddleware, (req, res, next) => {
+router.post('/photos', multipartyMiddleware, (req, res, next) => {
   if (req.files.uploadFile){
 
-    let gfs = Gridfs(dbPics.db)
+    //let gfs = Gridfs(dbFiles.db)
     
     if (Object.prototype.toString.call(req.files.uploadFile) === '[object Array]'){
       // 多图上传
