@@ -1,6 +1,6 @@
 <template>
     <div id="main">
-        <v-header showBackBtn="true" headTitle="hello world"></v-header>
+        <v-header showBackBtn="true" headTitle="首页"></v-header>
         <!--<div class="banner">
             <div class="swiper-container">
                 <div class="swiper-wrapper">

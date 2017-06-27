@@ -1,26 +1,32 @@
 <template>
     <div id="photo">
-        <v-header showBackBtn="true" headTitle="照片"></v-header>
+        <v-header showBackBtn="true" headTitle="照片" :showMenu="showMenu" @onTapMenu="tapMenu">
+            <ul class="photo-menu">
+                <li>
+                    <mt-button type="primary" @click="addPhoto">添加图片</mt-button>
+                </li>
+            </ul>
+        </v-header>
         <div class="content">
             <v-paging class="paging" :totalPage="totalPage" :page="page" @changePage="changePage" ></v-paging>
             <div class="photoList">
-                <div class="item" v-for="photo in photos">
-                    <img v-lazy.container="picsUrl + photo.name" />
+                <div class="item" v-for="(photo,index) in photos" :key="index">
+                    <img v-lazy.container="picsUrl + photo.name" ></img>
                 </div>
             </div>
             <v-paging class="paging" :totalPage="totalPage" :page="page" @changePage="changePage" ></v-paging>
-            <mt-button type="primary" v-on:click="onTap">添加图片</mt-button>
             <mt-popup v-model="popupVisible" position="left">
                 <div class="popup-box">
                     <div class="upload-control">
                         <label class="select-image" for="image-input">选择图片</label>
                         <input id="image-input" type="file" ref="inputer" @change="onFileChange" multiple="multiple" accept=".jpg,.jpeg,.png,.gif">
-                        <mt-button v-show="showUploadBtn" type="primary" v-on:click="uploadPhotos">上 传</mt-button>
                         <ul class="image-preview">
-                            <li v-for="image in previewImages">
-                                <img :src="image.url" />
+                            <li v-for="(image,index) in previewImages" :key="index">
+                                <img :src="image.url"></img>
                             </li>
                         </ul>
+                        <mt-button v-show="showUploadBtn" type="primary" @click="uploadPhotos">上 传</mt-button>
+                        <mt-button v-show="showUploadBtn" type="primary" plain @click="clearPhotos">清 空</mt-button>
                     </div>
                 </div>
             </mt-popup>
@@ -37,6 +43,7 @@
         data() {
             return {
                 formdata : undefined,
+                showMenu : false,
                 popupVisible:false,
                 showUploadBtn:false,
                 picsUrl : './static/images/',
@@ -62,8 +69,9 @@
                     console.log('oops, data is error')
                 })
             },
-            onTap(){
-                this.popupVisible = true;
+            addPhoto(){
+                this.popupVisible = true
+                this.showMenu = false
             },
             uploadPhotos(){
                 let url = '/api/photos';
@@ -72,8 +80,15 @@
                     console.log('oops, data is error')
                 })
             },
-            onFileChange(){
+            clearPhotos(){
                 //清除前一次上传文件的URL对象
+                this.previewImages.forEach((v,i)=> {
+                    URL.revokeObjectURL(v.url)
+                })
+                this.previewImages = []
+                this.showUploadBtn = false
+            },
+            onFileChange(){
                 this.previewImages.forEach((v,i)=> {
                     URL.revokeObjectURL(v.url)
                 })
@@ -97,12 +112,17 @@
                 }, (response) => {
                     console.log('oops, data is error')
                 })
+            },
+            tapMenu(){
+                this.showMenu = !this.showMenu
             }
+
         }
     }
 </script>
 <style scoped lang="scss">
     #photo{
+        .photo-menu{width:100%;}
         .content {
             padding:70px 10px 80px;box-sizing:border-box;
             .photoList {
@@ -117,16 +137,16 @@
             .paging{text-align: center;}
             .mint-popup-left{
                 height:100%;
-                .popup-box {width:200px;height:100%;top:0;right:0;bottom:0;background:#fff;text-align: center;
+                .popup-box {width:200px;height:100%;background:#fff;text-align: center;
                     .upload-control{
-                        padding-top:100px;
+                        padding-top:40px;
                         .select-image{position:relative;display:inline-block;padding:0 12px;background: #26a2ff;color:#fff;border-radius: 4px;border: 0;box-sizing: border-box;font-size: 18px;height: 41px;line-height:41px;}
                         #image-input{display:none;}
                     }
                     .image-preview {
-                        width:100%;height:400px;margin-top:20px;padding:30px;box-sizing:border-box;overflow:auto;
+                        width:100%;height:300px;margin:20px 0;padding:0 20px;box-sizing:border-box;overflow:auto;
                         li {
-                            display:block;width:140px;
+                            display:block;width:160px;
                             img {width:100%;}
                         }
                     }
@@ -142,4 +162,11 @@
     .router-fade-enter, .router-fade-leave-active {
         opacity: 0;
     }
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s
+    }
+    .fade-enter, .fade-leave-to {
+        opacity: 0
+    }
+
 </style>
