@@ -17,7 +17,6 @@ const users = [
   { name: 'Ludovic' }
 ]
 
-//const conn = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'vue-webpack')
 let dbFiles = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'files')
 let dbVueWebpack = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'vue-webpack')
 let PhotosModel = dbVueWebpack.model('Photos',PhotosSchema)
@@ -25,12 +24,22 @@ let FilesModel = dbFiles.model('fs.files',FilesSchema)
 
 /* GET pictures list by type. */
 router.get('/photos', (req, res, next) => {
+  let defaultQuery = {
+    page:1,
+    pageSize:10,
+    sort:0,
+  }
+  let query = Object.assign(defaultQuery,req.query)
   PhotosModel.find({"originType":"photo"},(err,docs) => {
-    res.json(docs)
+    let totalPage = Math.ceil(docs.length / parseInt(query.pageSize))
+    PhotosModel.find({"originType":"photo"}).skip((parseInt(query.page) - 1) * parseInt(query.pageSize)).limit(parseInt(query.pageSize)).exec((err,docs) => {
+      res.json({totalPage:totalPage,photos:docs})
+    })
   })
+
 })
 
-/* GET user by ID. */
+/* GET photo by ID. */
 router.get('/photo/:id', (req, res, next) => {
   var id = parseInt(req.params.id)
   if (id >= 0 && id < users.length) {
@@ -40,9 +49,8 @@ router.get('/photo/:id', (req, res, next) => {
   }
 })
 
-
+// 解析mutipart formdata的中间件
 let multipartyMiddleware = multiparty()
-/* POST user pictures to mongo-gridfs*/
 router.post('/photos', multipartyMiddleware, (req, res, next) => {
   if (req.files.uploadFile){
 
@@ -85,7 +93,7 @@ router.post('/photos', multipartyMiddleware, (req, res, next) => {
       //   }
       // })
       let writeStream = fs.createWriteStream('./static/images/' + file.name)
-      gm(path).resize(500).stream().pipe(writeStream)
+      gm(path).resize(400).stream().pipe(writeStream)
       writeStream.on('close',() => {
         // 记录图片业务关联信息
         let photo = {}

@@ -40,3 +40,6 @@ img {
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.mint-indicator-wrapper{z-index: 100000}
+.mint-indicator-mask{z-index: 100001}

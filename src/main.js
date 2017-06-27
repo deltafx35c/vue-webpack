@@ -9,9 +9,24 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 
 Vue.config.productionTip = false
-Vue.prototype.$http = axios
 Vue.use(VueTouch,{name: 'v-touch'})
 Vue.use(MintUI)
+axios.interceptors.request.use((config) => {
+  MintUI.Indicator.open({text: '加载中...',spinnerType: 'triple-bounce'})
+  return config;
+},(error) => {
+  MintUI.Indicator.open({text: '加载中...',spinnerType: 'triple-bounce'})
+  Promise.reject(error)
+})
+
+axios.interceptors.response.use(function (response) {
+  MintUI.Indicator.close()
+  return response;
+}, function (error) {
+  MintUI.Indicator.close()
+  return Promise.reject(error);
+});
+Vue.prototype.$http = axios
 
 /* eslint-disable no-new */
 new Vue({
