@@ -41,7 +41,7 @@
 			position: absolute;left: 4%;top: 50%;transform: translateY(-50%);
 		}
 		.right-box {
-			position: absolute;right: 4%;top: 50%;transform: translateY(-50%);
+			position: absolute;right: 6%;top: 50%;transform: translateY(-50%);
 		}
 		.menu-box {
 			 position:absolute;top:40px;right:0;padding:10px 20px;box-shadow: 0 2px 5px rgba(0, 0, 0, .3);background:#fff;
