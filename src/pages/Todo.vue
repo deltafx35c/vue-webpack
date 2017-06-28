@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<v-header showBackBtn="true" headTitle="hello world"></v-header>
-		<div class="todoMsg">该组件还为完成</div>
+		<div class="todoMsg">该组件还未完成</div>
         <v-footer></v-footer>
 	</div>
 </template>
