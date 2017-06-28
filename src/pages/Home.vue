@@ -1,6 +1,11 @@
 <template>
     <div id="main">
         <v-header showBackBtn="true" headTitle="首页"></v-header>
+        <div class="sky">
+            <div class="clouds_one"></div>
+            <div class="clouds_two"></div>
+            <div class="clouds_three"></div>
+        </div>
         <!--<div class="banner">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
@@ -24,6 +29,7 @@
 <script>
 import vHeader from '../components/Header'
 import vFooter from '../components/Footer'
+import '../static/lib/css/cloud.css'
 // import '../static/lib/js/swiper.min.js'
 // import '../static/lib/css/swiper.min.css'
 

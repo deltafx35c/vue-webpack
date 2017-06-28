@@ -33,7 +33,8 @@
 </script>
 <style scoped lang="scss">
 	header {
-		position: fixed;left: 0;top: 0;z-index: 100;width: 100%;height: 40px;line-height: 40px;color: #595757;background: #fff ;text-align: center;box-shadow: 0 2px 5px 2px rgba(0, 0, 0, .3);box-sizing: border-box;
+		position: fixed;left: 0;top: 0;z-index: 100;width: 100%;height: 40px;line-height: 40px;color: #fff;text-align: center;box-shadow: 0 2px 5px 2px rgba(0, 0, 0, .3);box-sizing: border-box;
+		background:-webkit-gradient(linear, 0 0, 0 bottom, from(#4168e9), to(#7175cf));
 		.title {
 			font-size: 18px;font-weight: bold;
 		}
