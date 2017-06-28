@@ -4,17 +4,17 @@ const fs = require("fs");
 const multiparty = require('connect-multiparty')
 const mongoose = require('mongoose')
 const PhotosSchema = require('./schema/photosSchema')
-const FilesSchema = require('./schema/filesSchema')
+//const FilesSchema = require('./schema/filesSchema')
 const Gridfs = require('gridfs-stream')
 const gm = require('gm').subClass({imageMagick:true})
 
 mongoose.Promise = global.Promise;
 Gridfs.mongo = mongoose.mongo
 
-let dbFiles = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'files')
+//let dbFiles = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'files')
 let dbVueWebpack = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'vue-webpack')
 let PhotosModel = dbVueWebpack.model('Photos',PhotosSchema)
-let FilesModel = dbFiles.model('fs.files',FilesSchema)
+//let FilesModel = dbFiles.model('fs.files',FilesSchema)
 
 /* GET pictures list by type. */
 router.get('/photos', (req, res, next) => {

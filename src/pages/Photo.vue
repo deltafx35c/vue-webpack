@@ -11,7 +11,7 @@
             <v-paging class="paging" :totalPage="totalPage" :page="page" @changePage="changePage" ></v-paging>
             <div class="photoList">
                 <div class="item" v-for="(photo,index) in photos" :key="index">
-                    <img v-lazy.container="picsUrl + photo.name" ></img>
+                    <img v-lazy.container="picsUrl + photo.name" >
                 </div>
             </div>
             <v-paging class="paging" :totalPage="totalPage" :page="page" @changePage="changePage" ></v-paging>
@@ -22,7 +22,7 @@
                         <input id="image-input" type="file" ref="inputer" @change="onFileChange" multiple="multiple" accept=".jpg,.jpeg,.png,.gif">
                         <ul class="image-preview">
                             <li v-for="(image,index) in previewImages" :key="index">
-                                <img :src="image.url"></img>
+                                <img :src="image.url">
                             </li>
                         </ul>
                         <mt-button v-show="showUploadBtn" type="primary" @click="uploadPhotos">上 传</mt-button>

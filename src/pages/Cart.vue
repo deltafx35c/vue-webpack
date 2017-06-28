@@ -1,22 +1,20 @@
 <template>
-    <div id="cart">
-        <v-header showBackBtn="true" headTitle="资源"></v-header>
-        <!--<div>hello</div>
-        <ul>
-            <li v-for="item in items">
-                {{item.name}}
-            </li>
-        </ul>
-        <mt-button type="primary" v-on:click="onTap">click me</mt-button>
-        <mt-popup v-model="popupVisible" position="left">
-            <div class="popup-box">
-                hello world
-            </div>
-        </mt-popup>
-        <mt-cell title="去首页" value="hello" is-link to="/home">
-            <i slot="icon" class="iconfont">&#xe720;</i>
-        </mt-cell>-->
-        <mt-cell-swipe title="标题" label="标注" :right="[{content:'<div style=\'color:red\'>123</div>',style:{color:'#fff'},handler:() => {this.$messagebox('delete')}}]"></mt-cell-swipe>
+    <div id="resource">
+        <v-header showBackBtn="true" headTitle="资源" :showMenu="showMenu" @onTapMenu="tapMenu">
+            <ul class="resource-menu">
+                <li>
+                    <mt-button type="primary" @click="addResource">上传资源</mt-button>
+                </li>
+            </ul>
+            <input id="upload-file" type="file" ref="uploadFile" @change="onFileChange">
+        </v-header>
+        <div class="content">
+            <mt-cell-swipe v-for="(resource,index) in resources" :key="index" :title="resource.name" label="一个测试资源文件" :right="[{content:'<div style=\'color:red\'>delete</div>',style:{color:'#fff'},handler:() => {this.$messagebox('delete')}}]">
+                <span>
+                    <mt-button type="primary" @click="downloadFile(resource.name)">下载</mt-button>
+                </span>
+            </mt-cell-swipe>
+        </div>
         <v-footer></v-footer>
     </div>
 </template>
@@ -27,25 +25,51 @@ import vFooter from '../components/Footer'
 export default {
     data() {
         return {
+            showMenu : false,
             popupVisible:false,
-            items : []
+            resources : []
         }
     },
     components: {
         vHeader,vFooter
     },
     mounted() {
-        let url = '/api/users';
-        this.$http.get(url).then((response) => {
-            this.$data.items = response.data
-        }, (response) => {
-            console.log('oops, data is error');
-        })
+        this.init();
     },
     methods: {
-        onTap(){
-            //this.$toast('hello world')
-            this.popupVisible = true;
+        init(){
+            let url = '/api/resources'
+            this.$http.get(url,{params:{page:1}}).then((response) => {
+                this.$data.resources = response.data.resources
+                this.$data.totalPage = response.data.totalPage
+            }, (response) => {
+                console.log('oops, data is error')
+            })
+        },
+        addResource(){
+            this.$refs.uploadFile.click()
+            this.showMenu = false
+        },
+        tapMenu(){
+            this.showMenu = !this.showMenu
+        },
+        onFileChange(){
+            let inputDOM = this.$refs.uploadFile
+            let formdata = new FormData()
+            formdata.append('uploadFile',inputDOM.files[0])
+            let url = '/api/resource';
+            this.$http.post(url,formdata).then((response) => {
+
+            }, (response) => {
+                console.log('oops, data is error')
+            })
+        },
+        downloadFile(filename){
+            debugger;
+            let a = document.createElement('a');
+            a.href = '/resources/' + filename;
+            a.download = filename;
+            a.click();
         }
     }
 
@@ -53,6 +77,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    #cart{position:absolute;top:40px;right:0;bottom:60px;left:0;text-align: center;}
+    #resource{position:absolute;top:40px;right:0;bottom:60px;left:0;
+        .resource-menu{width:100%;}
+         #upload-file{display:none;}
+        .content{padding:10px;}
+    }
     .popup-box{width:200px;height:100vh;top:0;right:0;bottom:0;background:#fff;text-align: center;}
 </style>
