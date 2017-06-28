@@ -1,7 +1,7 @@
 <template>
     <div id="cart">
-        <v-header showBackBtn="true" headTitle="hello world"></v-header>
-        <div>hello</div>
+        <v-header showBackBtn="true" headTitle="资源"></v-header>
+        <!--<div>hello</div>
         <ul>
             <li v-for="item in items">
                 {{item.name}}
@@ -15,7 +15,8 @@
         </mt-popup>
         <mt-cell title="去首页" value="hello" is-link to="/home">
             <i slot="icon" class="iconfont">&#xe720;</i>
-        </mt-cell>
+        </mt-cell>-->
+        <mt-cell-swipe title="标题" label="标注" :right="[{content:'<div style=\'color:red\'>123</div>',style:{color:'#fff'},handler:() => {this.$messagebox('delete')}}]"></mt-cell-swipe>
         <v-footer></v-footer>
     </div>
 </template>

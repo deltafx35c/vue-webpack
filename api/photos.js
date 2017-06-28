@@ -11,12 +11,6 @@ const gm = require('gm').subClass({imageMagick:true})
 mongoose.Promise = global.Promise;
 Gridfs.mongo = mongoose.mongo
 
-const users = [
-  { name: 'Alexandre' },
-  { name: 'Sébastien' },
-  { name: 'Ludovic' }
-]
-
 let dbFiles = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'files')
 let dbVueWebpack = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'vue-webpack')
 let PhotosModel = dbVueWebpack.model('Photos',PhotosSchema)
@@ -41,12 +35,7 @@ router.get('/photos', (req, res, next) => {
 
 /* GET photo by ID. */
 router.get('/photo/:id', (req, res, next) => {
-  var id = parseInt(req.params.id)
-  if (id >= 0 && id < users.length) {
-    res.json(users[id])
-  } else {
-    res.sendStatus(404)
-  }
+  res.json({status:'ok'})
 })
 
 // 解析mutipart formdata的中间件
@@ -67,7 +56,7 @@ router.post('/photos', multipartyMiddleware, (req, res, next) => {
         //     type:"photo"
         //   }
         // })
-        let writeStream = fs.createWriteStream('./static/images/' + file.name)
+        let writeStream = fs.createWriteStream('./upload/images/' + file.name)
         gm(path).resize(500).stream().pipe(writeStream)
         writeStream.on('close',() => {
           // 记录图片业务关联信息
@@ -92,7 +81,7 @@ router.post('/photos', multipartyMiddleware, (req, res, next) => {
       //     type:"photo"
       //   }
       // })
-      let writeStream = fs.createWriteStream('./static/images/' + file.name)
+      let writeStream = fs.createWriteStream('./upload/images/' + file.name)
       gm(path).resize(400).stream().pipe(writeStream)
       writeStream.on('close',() => {
         // 记录图片业务关联信息

@@ -5,20 +5,10 @@
 				<router-link to="/photo" :class=" pathName == navUrl[0] ? 'active' : ''">
 		    		<i class="iconfont">&#xe67f;</i><span>照片</span>
 		    	</router-link>
-	    		<!--<a v-on:click="showNav()" :class=" pathName == navUrl[0] ? 'active' : ''">
-	    			<i class="iconfont">&#xe6a8;</i>
-	    			<span>景区</span>
-	    		</a>
-	    		<transition name="slide-fade">
-					<ul v-show="isShow" class="sub-nav">
-						<li><router-link to="/todo">景区服务</router-link></li>
-						<li><router-link to="/todo">虚拟景区</router-link></li>
-					</ul>
-				</transition>-->
 	    	</li>
 	    	<li>
 		    	<router-link to="/todo" :class=" pathName == navUrl[1] ? 'active' : ''">
-		    		<i class="iconfont">&#xe69e;</i><span>资源</span>
+		    		<i class="iconfont">&#xe69e;</i><span>动态</span>
 		    	</router-link>
 	    	</li>
 	    	<li>
@@ -27,13 +17,13 @@
 	    		</router-link>
 	    	</li>
 	    	<li>
-				<router-link to="/todo" :class=" pathName == navUrl[3] ? 'active' : ''">
+				<router-link to="/blog" :class=" pathName == navUrl[3] ? 'active' : ''">
 					<i class="iconfont">&#xe675;</i><span>微博</span>
 				</router-link>
 	    	</li>
 	    	<li>
 	    		<router-link to="/cart" :class=" pathName == navUrl[4] ? 'active' : ''">
-	    			<i class="iconfont">&#xe668;</i><span>下载</span>
+	    			<i class="iconfont">&#xe668;</i><span>资源</span>
 	    		</router-link>
 	    	</li>
 	    </ul>
@@ -46,7 +36,7 @@
                 showEvent: undefined,
 				isShow: false,
 				pathName : 'home',
-				navUrl : ['photo', 'todo', 'home', 'todo', 'cart']
+				navUrl : ['photo', 'todo', 'home', 'blog', 'cart']
 			}
 		},
 		created() {

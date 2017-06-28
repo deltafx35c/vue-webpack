@@ -3,7 +3,7 @@
         <v-header showBackBtn="true" headTitle="照片" :showMenu="showMenu" @onTapMenu="tapMenu">
             <ul class="photo-menu">
                 <li>
-                    <mt-button type="primary" @click="addPhoto">添加图片</mt-button>
+                    <mt-button type="primary" @click="addPhoto">添加照片</mt-button>
                 </li>
             </ul>
         </v-header>
@@ -46,7 +46,7 @@
                 showMenu : false,
                 popupVisible:false,
                 showUploadBtn:false,
-                picsUrl : './static/images/',
+                picsUrl : './upload/images/',
                 photos : [],
                 previewImages: [],
                 page:1,
