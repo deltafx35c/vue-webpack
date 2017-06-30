@@ -13,7 +13,7 @@ Gridfs.mongo = mongoose.mongo
 
 //let dbFiles = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'files')
 let dbVueWebpack = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'vue-webpack')
-let PhotosModel = dbVueWebpack.model('Photos',PhotosSchema)
+let PhotosModel = dbVueWebpack.model('photos',PhotosSchema,'photos')
 //let FilesModel = dbFiles.model('fs.files',FilesSchema)
 
 /* GET pictures list by type. */

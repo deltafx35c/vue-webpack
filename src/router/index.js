@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/pages/Home'
 import Cart from '@/pages/Cart'
 import Todo from '@/pages/Todo'
+import Schedule from '@/pages/Schedule'
 import Blog from '@/pages/Blog'
 import Photo from '@/pages/Photo'
 
@@ -29,9 +30,9 @@ export default new Router({
       name: 'blog', 
       component: Blog
     }, {
-      path: '/todo',
-      name: 'todo', 
-      component: Todo
+      path: '/schedule',
+      name: 'schedule', 
+      component: Schedule
     }, {
       path: '/photo',
       name: 'photo',

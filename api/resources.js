@@ -11,7 +11,7 @@ Gridfs.mongo = mongoose.mongo
 
 let dbFiles = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'files')
 let dbVueWebpack = mongoose.createConnection(ENV.MANGOOSE_CONN_STR,'vue-webpack')
-let ResourcesModel = dbVueWebpack.model('resources',ResourcesSchema)
+let ResourcesModel = dbVueWebpack.model('resources',ResourcesSchema,'resources')
 
 /* GET pictures list by type. */
 router.get('/resources', (req, res, next) => {

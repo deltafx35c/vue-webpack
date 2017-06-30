@@ -7,7 +7,7 @@
 		    	</router-link>
 	    	</li>
 	    	<li>
-		    	<router-link to="/todo" :class=" pathName == navUrl[1] ? 'active' : ''">
+		    	<router-link to="/schedule" :class=" pathName == navUrl[1] ? 'active' : ''">
 		    		<i class="iconfont">&#xe69e;</i><span>动态</span>
 		    	</router-link>
 	    	</li>
@@ -36,7 +36,7 @@
                 showEvent: undefined,
 				isShow: false,
 				pathName : 'home',
-				navUrl : ['photo', 'todo', 'home', 'blog', 'cart']
+				navUrl : ['photo', 'schedule', 'home', 'blog', 'cart']
 			}
 		},
 		created() {
