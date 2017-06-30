@@ -2,7 +2,7 @@ const router = require('express').Router()
 const ENV = require('../env')
 const fs = require("fs");
 const mongoose = require('mongoose')
-const ScheduleSchema = require('./schema/ScheduleSchema')
+const ScheduleSchema = require('./schema/scheduleSchema')
 
 mongoose.Promise = global.Promise;
 
