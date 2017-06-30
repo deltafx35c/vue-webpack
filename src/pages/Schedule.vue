@@ -32,7 +32,7 @@
 		},
 		methods: {
 			tapDay(year,month,date){
-				this.ymd = year + '年' + month + '月' + date + '日'
+				date = '今' ? this.ymd = "今天" : this.ymd = year + '年' + month + '月' + date + '日'
                 this.popupVisible = true
 				let url = '/api/schedule'
                 this.$http.get(url,{params:{year:year,month:month,date:date}}).then((response) => {
@@ -48,7 +48,7 @@
 	.list-box {
 		width:100vw;padding:20px;box-sizing:border-box;max-height:50vh;overflow:auto;
 		.list {
-			
+			padding:10px 20px;border:#ccc solid 1px;border-radius:3px;
 		}
 	}
 </style>
