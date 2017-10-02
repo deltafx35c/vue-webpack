@@ -187,7 +187,7 @@
 
 <style scoped lang="scss">
 	.carlendar {
-		width:100%;float:left;padding-top:40px;padding-bottom:50px;background:#fff;
+		width:100%;float:left;padding:40px 1vw 50px;background:#fff;box-sizing:border-box;
 		.controller {
 			position:relative;width:60vw;margin:0 auto;height:60px;padding:10px;text-align:center;
 			.label {
@@ -219,9 +219,9 @@
 			}
 		}
 		.month {
-			float:left;width:100%;font-size:12px; padding:0 1vw;box-sizing:border-box;
+			float:left;width:100%;font-size:12px;
 			li {
-				display:block;float:left;width:14vw;height:20vw;line-height:6vw;text-align: center;
+				display:block;float:left;width:14.28%;height:20vw;line-height:6vw;text-align: center;
 				.red-day {
 					color:red;
 				}
@@ -298,6 +298,5 @@
 				}
 			}
 		}
-		
 	}
 </style>
