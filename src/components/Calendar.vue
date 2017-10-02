@@ -219,9 +219,9 @@
 			}
 		}
 		.month {
-			float:left;width:98%;border-right:#ccc solid 1px;border-bottom:#ccc solid 1px;font-size:12px;
+			float:left;width:100%;font-size:12px; padding:0 1vw;box-sizing:border-box;
 			li {
-				display:block;float:left;border-left:#ccc solid 1px;border-top:#ccc solid 1px;width:14vw;height:20vw;line-height:6vw;box-sizing:border-box;text-align: center;
+				display:block;float:left;width:14vw;height:20vw;line-height:6vw;text-align: center;
 				.red-day {
 					color:red;
 				}
